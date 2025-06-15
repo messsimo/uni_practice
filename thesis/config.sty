@@ -375,6 +375,8 @@
 
 % Helper for the title pages
 \RequirePackage{xstring}
+\RequirePackage{mfirstuc}
+
 % Helper
 \newcommand{\SplitFirstTwoWords}[1]{%
   \StrBefore{#1}{ }[\lastName]%
@@ -385,7 +387,7 @@
 \newcommand{\correctName}[1]{%
   \SplitFirstTwoWords{#1}%
   % Capitalize first part, print second part as is
-  \MakeUppercase{\lastName}~\firstName%
+  \MakeUppercase{\lastName}~\capitalisewords{\expandafter\firstName}%
 }
 \newcommand{\firstNameLastName}[1]{%
   \SplitFirstTwoWords{#1}%
