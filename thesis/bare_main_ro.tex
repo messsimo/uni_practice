@@ -3,7 +3,7 @@
 \usepackage[romanian]{config}
 
 % Description
-\newcommand{\thesisTitleEng}{Numele tezei}
+\newcommand{\thesisTitleEng}{Numele tezei} % Doar pentru master
 \newcommand{\uniGroupName}{MIA2201}
 
 \newcommand{\authorName}{NUME PRENUME} % Fără patronimic
@@ -14,7 +14,6 @@
 \newcommand{\conducatorName}{NUME PRENUME}
 
 \renewcommand{\year}{2024}
-\newcommand{\location}{Chișinău}
 \newcommand{\conferencesList}{Conferința Studențească, Editia NUMARUL-a, \year}
 \newcommand{\github}{\url{https://github.com/USER/REPO}}
 \newcommand{\outputDate}{\today}
@@ -27,7 +26,7 @@
 \tableofcontents
 
 \clearpage
-\unnumberedChapter{Adnotare}
+\unnumberedChapter{Adnotare} % Doar pentru master
 
 \textbf{la \thesisType{} ``\thesisTitle{}'', a studentului \authorName{}, grupa \uniGroupName{}, programul de studii \programulDeStudii.}
 
@@ -64,7 +63,7 @@ Toate codurile sursă a proiectului pot fi accesate pe GitHub după următorul l
 Rezultatele obținute au fost raportate la \textbf{\conferencesList}\cite{self}.
 
 \clearpage
-\unnumberedChapter{Annotation}
+\unnumberedChapter{Annotation} % Doar pentru master
 
 \textbf{of the \thesisType{} thesis  ``\thesisTitleEng'' of the student \authorName{}, group \uniGroupName{}, \programulDeStudii{} study program.}
 
@@ -74,37 +73,17 @@ General conclusions and recommendations, Bibliography of \bibliographyEntryCount
 Base text takes up \usefulPageCount{} pages and has \anexeCount{} appendicies.
 
 \textbf{Keywords:}
-\textit{\acs{PNG}, Zlib, DEFLATE, file format, syntax tree, visualization application.}
+\textit{}
 
 \textbf{Relevance.}
 
-The \acs{PNG} file format is an image format widely used on the Internet,
-graphics application development, as well as in other various domains.
-Understanding of the structure of the format can prove useful for extending it
-as well as using it in a more efficient way.
-The format's structure can also serve as a reference for designing new file formats.
-
 \textbf{Purpose and objectives of this research.}
 
-The scientific work has an educational purpose
--- it aims to inform on the structure of the \acs{PNG} file format.
-The main objective of the thesis is the exploration of the file format
-through building of a graphical application designed for its visualization.
+\textbf{The planned and obtained results}
 
-The goal of the thesis is explicitly \textit{not} to display the \acs{PNG} image on to the screen,
-neither it is to generate an image encoded in the \acs{PNG} format, focusing specifically
-on the structure of the format.
-
-\textbf{The planned and obtained results} are the following:
-(1) learning and understanding of the \acs{PNG} file format and of the associated compression formats
-(2) implementation of a parser in code
-(3) implementation of a graphical application on top of the parser.
-
-\textbf{Important resolved problems} are: poor understanding of the \acs{PNG} file format.
+\textbf{Important resolved problems} are:
 
 \textbf{Applicative value.} 
-As a result of the work, a graphical application has been implemented,
-which can be used to visualize the \acs{PNG} file format.
 
 The entire source code can be obtained by accessing the GitHub repository
 by the following URL: \github. 
@@ -356,8 +335,14 @@ poate niște diagrame, de ce ați folosit tehnologiile pe care le-ați folosit, 
 
 \section{Introducere}
 
-Aici includeți informații despre structura aplicației la nivel înalt, 
-poate niște diagrame, de ce ați folosit tehnologiile pe care le-ați folosit, etc.
+Aici includeți mai multe detalii despre module concrete din sistemul implementat.
+Ce probleme ați întâlnit și cum le-ați depășit.
+
+Cum ați folosit funcționalitățile importante din librării.
+
+Prezentați aplicația cu imagini, ori direct în text, 
+dacă ele sunt importante pentru înțelegere și mai specifice,
+ori cu referințe la anexe.
 
 \chapterConclusionSection{implementation_chapter_title}
 
