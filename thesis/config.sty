@@ -1,0 +1,418 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{config}
+
+\DeclareOption{romanian}{%
+  \newcommand{\mainLanguage}{romanian}%
+  \newcommand{\otherLanguage}{russian}%
+  \newcommand{\chapterConclusionLabel}{Concluzii pentru capitol \arabic{chapter}}%
+  \newcommand{\figureShortLabel}{Fig.}%
+  \newcommand{\anexaLabel}{Anexa}%
+  \newcommand{\introLabel}{Introducere}%
+  \newcommand{\titlePage}{\input{parts/foaie_de_titlu_ro}}%
+  \newcommand{\declarationPage}{\input{parts/declaratie_ro}}%
+}
+\DeclareOption{russian}{%
+  \newcommand{\mainLanguage}{russian}%
+  \newcommand{\otherLanguage}{romanian}%
+  \newcommand{\chapterConclusionLabel}{Выводы для главы \arabic{chapter}}%
+  \newcommand{\figureShortLabel}{Фиг.}%
+  \newcommand{\anexaLabel}{Приложение}%
+  \newcommand{\introLabel}{Введение}%
+  \newcommand{\titlePage}{
+    % Always include
+    \input{parts/foaie_de_titlu_ro}
+    % Only include if the language is RU
+    \input{parts/foaie_de_titlu_ru}
+  }%
+  \newcommand{\declarationPage}{\input{parts/declaratie_ru}}%
+}
+\DeclareOption*{\PackageError{config}{Invalid option '\CurrentOption'}{Pass the language option}}
+\ProcessOptions\relax
+
+% https://tex.stackexchange.com/a/63393
+\makeatletter
+\def\@makechapterhead#1{%
+  %%%%\vspace*{50\p@}% %%% removed!
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \huge\bfseries \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+\def\@makeschapterhead#1{%
+  %%%%%\vspace*{50\p@}% %%% removed!
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  #1\par\nobreak
+    \vskip 40\p@
+  }}
+\makeatother
+
+
+% spacings
+\RequirePackage[a4paper,right=15mm,left=25mm,top=20mm,bottom=20mm]{geometry}
+
+% 1.5 line spacing
+\RequirePackage{setspace}
+\setstretch{1.5}
+
+% By default, the first paragraph after 
+% a subsection and such is not indented.
+% Must be imported BEFORE polyglossia.
+\RequirePackage{indentfirst}
+
+% Being able to copy-paste from the document
+% Display the diacritics correctly
+\RequirePackage{fontspec}
+% Times New Roman font
+\setmainfont{Times New Roman}[Ligatures=TeX]
+\setmonofont{Liberation Mono}[Scale=MatchLowercase]
+
+% Romanian language support
+\usepackage{polyglossia}{}
+\setmainlanguage{\mainLanguage}
+\setotherlanguage{\otherLanguage}
+\newfontfamily\cyrillicfont{Times New Roman}[Ligatures=TeX]
+\newfontfamily\cyrillicfonttt{Liberation Mono}[Scale=MatchLowercase]
+
+% Language-specific quote config
+\RequirePackage{csquotes}
+
+% Counters
+\RequirePackage{totcount}
+\newtotcounter{num_bib_entries}
+\newtotcounter{num_appendices}
+\newtotcounter{num_chapters}
+% See the places these get mentioned to see how it's implemented.
+\newcommand{\bibliographyEntryCount}{\total{num_bib_entries}}
+\newcommand{\anexeCount}{\total{num_appendices}}
+\newcommand{\chapterCount}{\total{num_chapters}}
+
+% Bibliography package.
+% This is different from the default system, because we need to configure the format.
+% The default system (bibtex) has its own DSL and it's actually impossible to 
+% capitalize the last name in that system without reimplementing everything.
+\RequirePackage[
+  backend=biber
+  ,date=long
+  ,labeldate=long
+  ,urldate=long
+  ,style=ieee
+  ,bibencoding=UTF8
+]{biblatex}
+\addbibresource{bibliography.bib}
+
+% Count bibliography entries.
+% NOTE: Only works if you don't clone, as mentioned in the answer:
+% https://tex.stackexchange.com/a/536720
+\newcommand*{\listcounted}{}
+\makeatletter
+\AtDataInput{%
+  \xifinlist{\abx@field@entrykey}\listcounted
+    {}
+    {\stepcounter{num_bib_entries}%
+     \listxadd\listcounted{\abx@field@entrykey}}%
+}
+\makeatother
+
+% Removes Address: or Adresa: before the url
+\DefineBibliographyStrings{\mainLanguage}{url = {}}
+\DeclareFieldFormat{url}{\url{#1}}
+
+% "{title}", with quotes specific to the language
+\DeclareFieldFormat{title}{\mkbibquote{#1}}
+% Accesat în {date}
+% This removes the parentheses around.
+\DeclareFieldFormat{urldate}{\bibstring{urlseen}~#1}
+
+% if 1 author: CURMANSCHII Anton
+% if 2 authors: CURMANSCHII Anton; another author
+% if >2 authors: CURMANSCHII Anton et al.
+\def\authorNameHelper{
+  \MakeUppercase{\namepartfamily}%
+  \ifdefvoid{\namepartgiven}{}{\space\namepartgiven}%
+}
+\DeclareNameFormat{author}{%
+  \ifnum\value{listtotal}=1
+    \authorNameHelper
+  \else
+    \ifnum\value{listtotal}=2
+      \authorNameHelper
+      \ifnum\value{listcount}=1
+        \addsemicolon\space
+      \fi
+    \else
+      % Three or more authors
+      \ifnum\value{listcount}=1
+        \authorNameHelper
+        \addspace et al.%
+      \fi
+    \fi
+  \fi
+}
+
+% Configure the order that the info appears.
+% I'm not sure which format must be used.
+% NOTE: other types of documents will have the default format.
+\def\helperFormat{%
+  \printnames{author}%
+  \newunit\newblock
+  \printfield{title}%
+  \newunit\newblock
+  \printfield{url}%
+  \newunit\newblock
+  \printfield{year}%
+  \addperiod\space
+  \printurldate%
+  \finentry
+}
+\DeclareBibliographyDriver{online}{\helperFormat}
+\DeclareBibliographyDriver{manual}{\helperFormat}
+
+% Appendices
+\RequirePackage[toc,page]{appendix}
+
+% Lista abrevierelor
+\RequirePackage[printonlyused]{acronym}
+
+% Format urls in the bibliography
+% Must be after biblatex
+% \RequirePackage{url}
+\RequirePackage{hyperref}
+% Clickable table of contents
+\hypersetup{linktoc=all}
+
+% Code blocks
+\RequirePackage{minted}
+\setminted{%
+  % remove indentation from the start of each line by the common amount
+  autogobble=true,
+  codetagify=true,
+  linenos=true,
+  breaklines=true,
+  baselinestretch=0.8,
+  % https://www.giss.nasa.gov/tools/latex/ltx-178.html
+  fontsize=\footnotesize
+  % Prevent it from spilling over margins for especially long lines
+  ,breakanywhere=true
+  % Make it use the same margins as regular text.
+  % Add to it the width of the line numbers + the distance to them
+  % So that the line numbers start at text offset.
+  % See https://pygments.org/docs/formatters/ for default sizes,
+  % because minted doesn't allow overridding these and doesn't mention them in the docs.
+  % Properties line_number_pad=6px, lineno_fontsize=12pt, lineno_padding=2 ??
+  % How the hell do you relate these??
+  % Honestly, screw that, just hard code it.
+  ,xleftmargin=\the\numexpr\leftmargin+2em\relax
+  ,xrightmargin=\rightmargin
+}
+
+% Chapters should count with roman numerals
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
+
+% Add dots to numbers, only applies to TOC
+\let\savenumberline=\numberline
+\def\numberline#1{\savenumberline{#1.}~}
+
+% Chapters must be left aligned and 14 pt.
+% There's no 14 pt available, though, only 14.4 (\large)
+% https://tex.stackexchange.com/questions/24599/what-point-pt-font-size-are-large-etc/24600#24600
+\RequirePackage{titlesec}    
+% \titleformat{〈command 〉}[〈shape〉]{〈format〉}{〈label 〉}{〈sep〉}{〈before-code〉}[〈after-code〉]
+% https://mirror.marwan.ma/ctan/macros/latex/contrib/titlesec/titlesec.pdf#page=4&zoom=200,67,627
+% It gets pretty involved...
+\def\tabSize{1cm}
+\newif\ifchapterupper
+\chapteruppertrue
+
+\titleformat{\chapter}[block]{\normalfont\large\bfseries\filcenter}{\thechapter~}{\tabSize}{\ifchapterupper \MakeUppercase \fi}
+\titleformat{\section}[block]{\normalfont\normalsize\bfseries\filright}{\thesection~}{\tabSize}{}
+\titleformat{\subsection}[block]{\normalfont\normalsize\bfseries\filright}{\thesubsection~}{\tabSize}{}
+
+\newcommand\restoreChapterCasing{\chapterupperfalse}
+
+% Skips before and after the title
+\titlespacing*{\chapter}{0pt}{12pt}{6pt}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+\titlespacing*{\subsection}{0pt}{12pt}{6pt}
+
+% Aliniat de 1 cm.
+\RequirePackage{indentfirst}
+\setlength{\parindent}{1.0cm}
+
+% Thank you to @paante on LaTeX Discord.
+% Makes it possible to mark pages and then do math on them.
+% usage: \markpage{key}
+%        \getpagemark{key}
+\newwrite\pagecountf
+\AtBeginDocument{%
+    \InputIfFileExists{\jobname.pagecount}{}{}%
+    \immediate\openout\pagecountf={\jobname.pagecount}%
+}
+\AtEndDocument{\closeout\pagecountf}
+\protected\def\markpage#1{%
+    \write\pagecountf{%
+        \noexpand\expandafter\gdef
+            \noexpand\csname pagecount/#1\endcsname
+            {\the\value{page}}%
+    }%
+}
+\def\getpagemark#1{\ifcsname pagecount/#1\endcsname \csname pagecount/#1\endcsname \else 0\fi}
+
+
+
+% Extracting the name of chapters.
+% https://tex.stackexchange.com/questions/62241/how-to-get-the-current-chapter-name-section-name-subsection-name-etc
+\RequirePackage{nameref}
+
+% No spacing for lists.
+% https://tex.stackexchange.com/questions/10684/vertical-space-in-lists
+\RequirePackage{enumitem}
+\setlist{nosep}
+
+% Helper functions for some stuff
+\newcommand{\unnumberedChapter}[1]{
+  \chapter*{#1}
+  \addcontentsline{toc}{chapter}{#1}
+}
+
+% SIGN HERE: _______ sort of field
+\def\underscores#1{\leavevmode \leaders\hrule\hskip#1\relax}
+
+% First parameter is the size
+% Second parameter is the text
+% https://tex.stackexchange.com/questions/55698/text-under-a-line
+\newcommand{\textUnderLine}[2]{%
+  \ensuremath{%
+    \vphantom{\underscores{#1}}%
+    \smash{\underset{\text{#2}}{\underscores{#1}}}%
+  }%
+}
+
+% Does math on counters
+\newcommand{\usefulPageCount}{%
+  % This evaluates a math expression, which is `end - begin`
+  \the\numexpr\getpagemark{usefulStuffEnd}-\getpagemark{usefulStuffBegin}\relax}
+
+\newcommand\chapterConclusionSection[1]{\section{\chapterConclusionLabel\relax}}
+
+% Some math stuff? I don't even know.
+\RequirePackage{amsmath}
+
+% Make figures use Fig. instead of Figura.
+% Has to be set per-language, otherwise it gets overridden.
+\addto\captionsromanian{\renewcommand{\figurename}{\figureShortLabel}}
+% \addto\captionsrussian{\renewcommand{\figurename}{\figureShortLabel}}
+% Their numbering has to use the chapter number.
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+
+% Use . instead of : in figures
+\RequirePackage{caption}
+\captionsetup[figure]{labelsep=period}
+\captionsetup[table]{labelsep=period}
+
+% Inserting pictures
+\RequirePackage{graphicx}
+
+\graphicspath{{./images/}}
+
+
+% Center and name image figures
+\newlength{\imgwidth}
+\newcommand{\imageWithCaption}[2]{%
+  \begin{figure}[H]
+      \centering
+      % This limits the max width, while not letting smaller images
+      % scale past their width.
+      \settowidth{\imgwidth}{\includegraphics{#1}}%
+      \setlength{\imgwidth}{\minof{\imgwidth}{\textwidth}}%
+      \includegraphics[width=\imgwidth,keepaspectratio]{#1}
+      \caption{#2}\label{fig:#1}
+  \end{figure}}
+
+% Short figure reference.
+% TODO: Add helper for long figure reference?
+\newcommand\refFigure[1]{\MakeLowercase{\figureShortLabel} \ref{fig:#1}}
+
+% See the python script.
+% It inserts the minted listing text.
+% I couldn't find how to extract the output of a script,
+% so just doing this nonsense instead, where it types its
+% output already formatted for minted use.
+% Good thing I don't use more settings for that command, am I right or am I right?
+\newcommand\inputMintedSegment[2]{%
+    \input{|python3 findSegment.py #1 #2}%
+}
+
+\def\appendixChapter{%
+  % Appendices don't have the dot when referencing.
+  % If you have multiple chapters in appendices, you'll have to reconfigure this.
+  \renewcommand{\thesection}{\arabic{section}}%
+  \titleformat{\section}[block]{\normalfont\normalsize\bfseries\filcenter}{\anexaLabel{} \thesection.~}{0pt}{}%
+  \appendix
+  %
+  % Every section on new page
+  % \newcommand{\sectionbreak}{\clearpage}
+  %
+  % Since we've got just a single chapter in the appedices,
+  % but which is also the name of the Appendix chapter, it should be omitted.
+  % Makes little sense, but ok I guess.
+  \setcounter{chapter}{1}%
+  %
+  % Counter, again, looks at sections rather than subsections.
+  \def\oldsection{} \let\oldsection=\section{}%
+  \def\section{\stepcounter{num_appendices}\oldsection}%
+
+  \unnumberedChapter{Anexe}
+}
+
+% Helper for the title pages
+\RequirePackage{xstring}
+% Helper
+\newcommand{\SplitFirstTwoWords}[1]{%
+  \StrBefore{#1}{ }[\lastName]%
+  \StrBehind{#1}{ }[\rest]%
+  \StrBefore{\rest}{ }[\firstName]%
+  \IfStrEq{\firstName}{}{\def\firstName{\rest}}{}%
+}
+\newcommand{\correctName}[1]{%
+  \SplitFirstTwoWords{#1}%
+  % Capitalize first part, print second part as is
+  \MakeUppercase{\lastName}~\firstName%
+}
+\newcommand{\firstNameLastName}[1]{%
+  \SplitFirstTwoWords{#1}%
+  \firstName{}~\lastName{}%
+}
+
+\newcommand{\bibliographyChapter}{%
+  \setcounter{num_chapters}{\value{chapter}}
+  \newpage
+  \markpage{usefulStuffEnd}
+  \printbibliography
+  \addcontentsline{toc}{chapter}{\bibname}
+}
+
+% This is how you capitalize a piece of text in latex. Yikes.
+\ExplSyntaxOn
+\RequirePackage{xparse}
+\NewDocumentCommand{\introLabelUpper}{} {
+  \tl_upper_case:n {\introLabel}
+}
+\ExplSyntaxOff
+
+\newcommand{\introChapter}{
+  % I think this one's required to be capitalized.
+  \unnumberedChapter{\introLabelUpper}
+  \markpage{usefulStuffBegin}
+}
+
+\usepackage[useregional=text]{datetime2}
+

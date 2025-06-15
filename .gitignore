@@ -1,0 +1,9 @@
+*.dll
+*.lib
+*.o
+*.obj
+*.exe
+zig-cache
+zig-out
+docker
+.DS_Store
