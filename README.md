@@ -10,8 +10,10 @@
 - Install all components using the package manager:
     ```
     sudo apt update
-    sudo apt install texlive-bibtex-extra biber texlive texlive-lang-cyrillic texlive-lang-european python3-pygments latexmk texlive-xetex  # latex, python
-    sudo apt install ttf-mscorefonts-installer # times new roman
+    sudo apt install xz-utils texlive-bibtex-extra biber texlive texlive-lang-cyrillic texlive-lang-european python3-pygments latexmk texlive-xetex # font utils, latex, python
+    curl -L -O https://notabug.org/ArtikusHG/times-new-roman/raw/master/times.tar.xz
+    sudo tar -xf times.tar.xz -C /usr/share/fonts/
+    fc-cache -f -v
     ```
 
 - Clone this repo:
