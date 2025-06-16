@@ -7,10 +7,10 @@
 - *For Windows users only* - Install WSL and configure a distribution. 
   I'll be assuming Ubuntu in the next steps, which is the default in WSL.
 
-- Install all components using the package manager (TODO verify the commands):
+- Install all components using the package manager:
     ```
     sudo apt update
-    sudo apt install texlive-lang-cyrillic python3-pygments # latex, python
+    sudo apt install texlive-bibtex-extra biber texlive texlive-lang-cyrillic texlive-lang-european python3-pygments latexmk texlive-xetex  # latex, python
     sudo apt install ttf-mscorefonts-installer # times new roman
     ```
 
