@@ -5,6 +5,20 @@ configured according to USM standards.
 
 # Prerequisites
 
+## Windows
+
+> [There's a video in russian.](https://youtu.be/TGKnbUBJUOU)
+
+For Windows users, it is highly recommended to use WSL.
+For installation instructions, see [this](https://learn.microsoft.com/en-us/windows/wsl/install).
+
+Once you got WSL, refer to the [Ubuntu](#Ubuntu) section for further instructions.
+
+Now, the template may work on Windows without WSL.
+The reason it's not recommended is because Latex is known
+to cause issues because of incorrect package versions.
+Latex on Linux is more stable.
+
 ## Ubuntu
 
 ```shell
@@ -15,7 +29,7 @@ sudo tar -xf times.tar.xz -C /usr/share/fonts/
 fc-cache -f -v
 ```
 
-### macOS
+## macOS
 
 1. **Install Homebrew:** If you don't have it, install it by running:
 
@@ -44,19 +58,7 @@ fc-cache -f -v
    pip install Pygments
    ```
 
-### Windows
-
-> [There's a video in russian.](https://youtu.be/TGKnbUBJUOU)
-
-For Windows users, it is highly recommended to use WSL.
-For installation instructions, see [this](https://learn.microsoft.com/en-us/windows/wsl/install).
-
-Once you got WSL, refer to [Ubuntu](#Ubuntu) section.
-
-Now, the template may work on Windows without WSL.
-The reason it's not recommended is because Latex is known
-to cause issues because of incorrect package versions.
-Latex on Linux is more stable.
+# Usage
 
 ## Cloning the Repository
 
@@ -68,8 +70,6 @@ cd ~
 git clone https://github.com/AntonC9018/uni_thesisTemplate
 cd uni_thesisTemplate
 ```
-
-# Usage
 
 ## Compiling the Thesis
 
