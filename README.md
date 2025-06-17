@@ -1,57 +1,97 @@
-## How to use?
+# USM Latex Template
 
-> There's gonna be a video on YouTube later too.
+This repository contains a Latex template 
+configured according to USM standards.
 
-**Requirements:**
+# Prerequisites
 
-- *For Windows users only* - Install WSL and configure a distribution. 
-  I'll be assuming Ubuntu in the next steps, which is the default in WSL.
+## Ubuntu
 
-- Install all components using the package manager:
-    ```
-    sudo apt update
-    sudo apt install fonts-liberation xz-utils texlive-bibtex-extra biber texlive texlive-lang-cyrillic texlive-lang-european python3-pygments latexmk texlive-xetex # liberation font, font utils, latex, python
-    curl -L -O https://notabug.org/ArtikusHG/times-new-roman/raw/master/times.tar.xz
-    sudo tar -xf times.tar.xz -C /usr/share/fonts/
-    fc-cache -f -v
-    ```
-
-- Clone this repo:
-    ```
-    git clone https://github.com/AntonC9018/uni_thesisTemplate
-    cd uni_thesisTemplate
-    ```
-
-- Rename the file you need (ru / ro):
-    ```
-    mv thesis/bare_main_ro.tex thesis/main.tex
-    ```
-
-- If you already have a repo, copy over the files from this repo to your repo.
-
-**How to compile?**
-
-Just run:
-```
-cd thesis
-./render.sh
+```shell
+sudo apt update
+sudo apt install fonts-liberation xz-utils texlive-bibtex-extra biber texlive texlive-lang-cyrillic texlive-lang-european python3-pygments latexmk texlive-xetex # liberation font, font utils, latex, python
+curl -L -O https://notabug.org/ArtikusHG/times-new-roman/raw/master/times.tar.xz
+sudo tar -xf times.tar.xz -C /usr/share/fonts/
+fc-cache -f -v
 ```
 
-## Notes for Windows
+### macOS
 
-On Windows, it might work, it might not work.
-It does work for me, but I had problems setting it up on other computers.
-I assume it installs different versions for packages,
-and to my knowledge it's not possible to lock them.
+1. **Install Homebrew:** If you don't have it, install it by running:
 
-Linux is way more stable in this regard, so just use WSL.
+   ```shell
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
 
+2. **Install MacTeX and Fonts:**
+
+   ```shell
+   brew install --cask mactex font-liberation font-times-new-roman
+   ```
+
+   After installing MacTeX, run **TeX Live Utility** to ensure 
+   all packages are up to date.
+
+3. **Install Python** (skip if you already have Python).
+
+   ```shell
+   brew install python # skip if you already have python
+   ```
+
+4. **Install Pygments:**
+
+   ```shell
+   pip install Pygments
+   ```
+
+### Windows
+
+> [There's a video in russian.](https://youtu.be/TGKnbUBJUOU)
+
+For Windows users, it is highly recommended to use WSL.
+For installation instructions, see [this](https://learn.microsoft.com/en-us/windows/wsl/install).
+
+Once you got WSL, refer to [Ubuntu](#Ubuntu) section.
+
+Now, the template may work on Windows without WSL.
+The reason it's not recommended is because Latex is known
+to cause issues because of incorrect package versions.
+Latex on Linux is more stable.
+
+## Cloning the Repository
+
+Use `git` to get a local copy of this repository.
+Install `git` if you don't have it yet.
+
+```shell
+cd ~
+git clone https://github.com/AntonC9018/uni_thesisTemplate
+cd uni_thesisTemplate
+```
+
+# Usage
+
+## Compiling the Thesis
+
+1. **Choose Your Language:** Rename the main `.tex` file 
+   according to your language (`ru`/`ro`).
+
+   ```shell
+   mv thesis/bare_main_ro.tex thesis/main.tex
+   ```
+
+2. **Compile the PDF:**
+
+   ```shell
+   cd thesis
+   ./render.sh
+   ```
 
 ## But I don't know Latex...
 
-The process is like this:
-- There's the *source file*, which is the `main.tex` file;
-- There's the *Latex compiler*, which *compiles* it to make a PDF;
+Here's an overview of the process:
+- There's the **source file**, which is the `main.tex` file;
+- There's the **Latex compiler**, which *compiles* it to make a PDF;
 - The PDF is output in the same directory as the `main.tex` file, you can view it normally in the browser.
 
 I suggest you look through `main.tex` and correlate 
