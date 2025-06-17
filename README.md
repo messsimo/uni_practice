@@ -16,10 +16,12 @@ Once you got WSL, refer to the [Ubuntu](#Ubuntu) section for further instruction
 
 Now, the template may work on Windows without WSL.
 The reason it's not recommended is because Latex is known
-to cause issues because of incorrect package versions.
-Latex on Linux is more stable.
+to cause issues on Windows because of incorrect package versions.
+Latex on Linux is more stable in this regard.
 
 ## Ubuntu
+
+Run the following commands to install the required packages and fonts:
 
 ```shell
 sudo apt update
