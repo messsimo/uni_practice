@@ -49,7 +49,7 @@ fc-cache -f -v
 3. **Install Python** (skip if you already have Python).
 
    ```shell
-   brew install python # skip if you already have python
+   brew install python
    ```
 
 4. **Install Pygments:**
@@ -74,7 +74,7 @@ cd uni_thesisTemplate
 ## Compiling the Thesis
 
 1. **Choose Your Language:** Rename the main `.tex` file 
-   according to your language (`ru`/`ro`).
+   corresponding to your language (`ru`/`ro`).
 
    ```shell
    mv thesis/bare_main_ro.tex thesis/main.tex
