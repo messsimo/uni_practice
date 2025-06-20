@@ -1,0 +1,1245 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage[russian]{config}
+
+% Переменные
+\graphicspath{ {./images/} }
+\newcommand{\uniGroupName}{I2402}
+
+\newcommand{\authorNameRu}{Михай Даниел}
+\newcommand{\thesisTitleRu}{Изучение \LaTeX{} и Git}
+\newcommand{\identificatorulCursuluiRu}{0613.4 Информатика}
+\newcommand{\conducatorNameRu}{Курманский Антон}
+
+\renewcommand{\year}{2025}
+\newcommand{\github}{\url{https://github.com/messsimo/uni_practice}}
+\newcommand{\pdfLink}{\url{https://github.com/messsimo/uni_practice}}
+\newcommand{\outputDate}{\today}
+
+\usepackage{listings}
+\begin{document}
+
+\input{parts/foaie_de_titlu_ru} % Титульный лист
+
+% -------------------------------------
+
+\clearpage
+\tableofcontents % Содержание
+
+% -------------------------------------
+
+\clearpage
+\unnumberedChapter{Аннотация}
+
+\textbf{Практическая работа на тему ``\thesisTitleRu{}'', студента \authorNameRu{}, группа \uniGroupName{}.}
+
+\textbf{Структура практической работы.}
+Практическая работа состоит из: Введения, трёх глав, Заключения с рекомендациями, библиографии и приложений. В работе представлены теоретические сведения, практические задания и иллюстрации, отражающие процесс изучения систем \LaTeX{} и Git. Основной текст включает подробные инструкции и скриншоты, демонстрирующие выполнение заданий на платформе Learn Git Branching \cite{learngitbranching}.
+
+\textbf{Актуальность.}
+Системы управления версиями и профессиональной вёрстки документов играют важную роль в современной IT-индустрии. Git широко используется в командной разработке программного обеспечения \cite{git_official_doc, progit_book}, а \LaTeX{} — в научной и инженерной документации \cite{latex_official_doc, latex_project_site, overleaf_intro}. Их знание необходимо для любого начинающего специалиста в сфере ИТ.
+
+\textbf{Цель и задачи исследования.}
+Целью данной работы является освоение основ использования \LaTeX{} и Git, а также практическое применение полученных знаний на платформе Learn Git Branching.
+
+Для достижения цели были поставлены следующие задачи:
+\begin{itemize}
+  \item Изучить синтаксис и особенности вёрстки с использованием \LaTeX{} \cite{latex_official_doc, latex_project_site};
+  \item Освоить ключевые команды Git и принципы работы с системой контроля версий \cite{progit_book};
+  \item Пройти практические задания Learn Git Branching по ветвлению, слиянию и удалённым репозиториям \cite{learngitbranching};
+  \item Подготовить отчётный документ в \LaTeX{}, используя современные пакеты, включая подсветку кода с помощью \texttt{minted} \cite{latex_minted}.
+\end{itemize}
+
+\textbf{Ожидаемые и полученные результаты.}
+Ожидалось овладение базовыми навыками вёрстки и контроля версий. В результате был оформлен структурированный документ в \LaTeX{}, содержащий полную практическую часть по Git и Learn Git Branching, включая графические иллюстрации и разъяснения к каждому этапу.
+
+\textbf{Важные решённые проблемы.}
+В процессе работы были решены следующие задачи:
+\begin{itemize}
+  \item организация многоуровневой структуры документа в \LaTeX{};
+  \item изучение моделей ветвления и командной работы в Git;
+  \item визуализация выполнения практических заданий;
+  \item интеграция технического и визуального материала в единую отчётную работу.
+\end{itemize}
+
+\textbf{Практическая ценность.}
+Результаты работы могут быть использованы как руководство для студентов, начинающих осваивать \LaTeX{} и Git, а также как база для подготовки отчётной и научной документации в технических вузах.
+
+Весь исходный код проекта доступен на GitHub по следующей ссылке: \github.
+
+% -------------------------------------
+
+\introChapter
+
+\textbf{Актуальность и важность темы.}
+
+Освоение систем \LaTeX{} и Git \cite{latex_official_doc, progit_book} является важным шагом в формировании технической грамотности современного IT-специалиста. Git применяется повсеместно в процессе разработки программного обеспечения, позволяя эффективно управлять изменениями и взаимодействовать в команде. \LaTeX{}, в свою очередь, обеспечивает профессиональную вёрстку документов, широко используемую в научной, инженерной и образовательной среде \cite{latex_project_site, overleaf_intro}.
+
+Практическая направленность данной работы, подкреплённая выполнением заданий на интерактивной платформе Learn Git Branching \cite{learngitbranching}, делает изучение не только теоретически обоснованным, но и прикладным.
+
+\textbf{Цель и задачи.}
+
+Цель — получить практические навыки работы с \LaTeX{} и Git, а также закрепить знания через выполнение реальных задач, включая визуализацию ветвлений и взаимодействие с удалёнными репозиториями.
+
+Задачи:
+\begin{itemize}
+  \item Изучить принципы и команды Git, в том числе ветвление, слияние и работу с удалёнными репозиториями;
+  \item Освоить синтаксис \LaTeX{}, включая структуру документа, оформление кода, таблиц, рисунков;
+  \item Подготовить отчёт с использованием современных пакетов (\texttt{minted}, \texttt{graphicx} и др.) \cite{latex_minted};
+  \item Пройти все ключевые блоки платформы Learn Git Branching: Introduction, Ramping Up, Moving Work Around, Mixed Bag и Advanced Topics;
+  \item Создать структурированный отчёт, включающий скриншоты выполнения заданий и объяснение решений.
+\end{itemize}
+
+\textbf{Методологическая и технологическая база.}
+
+В работе использованы:
+\begin{itemize}
+  \item Платформа Learn Git Branching \cite{learngitbranching} для симуляции работы с Git;
+  \item Компилятор XeLaTeX для создания PDF-документа;
+  \item Пакеты \texttt{minted}, \texttt{graphicx}, \texttt{biblatex} для оформления кода, иллюстраций и библиографии;
+  \item Git CLI и веб-интерфейс GitHub (в обучающей форме, без публикации проекта).
+\end{itemize}
+
+\textbf{Научная новизна / оригинальность.}
+
+Работа сочетает сразу два технологических направления — вёрстку и контроль версий — и демонстрирует практическое применение обеих технологий в едином отчёте. Также показан прогрессивный подход к обучению Git через визуальное взаимодействие, что повышает понимание абстрактных концепций.
+
+\textbf{Практическая ценность.}
+
+Полученные материалы могут использоваться:
+\begin{itemize}
+  \item как пособие для студентов технических направлений;
+  \item как пример оформления отчётов в \LaTeX{};
+  \item как руководство по решению задач Git через Learn Git Branching.
+\end{itemize}
+
+\textbf{Краткое содержание работы.}
+
+\begin{itemize}
+  \item Первая глава знакомит с основами системы \LaTeX{}, её назначением, преимуществами и базовыми конструкциями;
+  \item Вторая глава описывает Git, его возможности и применимость в командной разработке;
+  \item Третья глава посвящена практическому выполнению задач на платформе Learn Git Branching с подробным разбором каждой секции.
+\end{itemize}
+
+% -------------------------------------
+
+\chapter{Введение в систему вёрстки \LaTeX}\label{latex_introduction}
+
+\section{Установка \LaTeX{} на macOS}
+
+Для начала работы с \LaTeX{} на операционной системе macOS рекомендуется использовать дистрибутив MacTeX, который включает в себя все необходимые компоненты для компиляции документов.
+
+\subsection*{Шаг 1. Установка Homebrew}
+
+Homebrew — это менеджер пакетов для macOS. Если он ещё не установлен, выполните следующую команду в терминале:
+
+\begin{minted}{bash}
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+\end{minted}
+
+\subsection*{Шаг 2. Установка MacTeX и дополнительных шрифтов}
+
+Установите MacTeX и необходимые шрифты с помощью Homebrew:
+
+\begin{minted}{bash}
+brew install --cask mactex font-liberation font-times-new-roman
+\end{minted}
+
+После установки рекомендуется открыть утилиту \textbf{TeX Live Utility} и обновить все доступные пакеты.
+
+\subsection*{Шаг 3. Установка Python и Pygments}
+
+Для использования подсветки синтаксиса (через пакет \verb|minted|), необходимо установить Python и пакет Pygments:
+
+\begin{minted}{bash}
+brew install python
+pip install Pygments
+\end{minted}
+
+\section{Использование шаблона диплома}
+
+\subsection*{Клонирование репозитория}
+
+Для начала работы с шаблоном, склонируйте репозиторий из GitHub:
+
+\begin{minted}{bash}
+cd ~
+git clone https://github.com/AntonC9018/uni_thesisTemplate
+cd uni_thesisTemplate
+\end{minted}
+
+\subsection*{Выбор языка}
+
+Шаблон содержит версии на разных языках. Для выбора нужного языка переименуйте соответствующий файл:
+
+\begin{minted}{bash}
+mv thesis/bare_main_ro.tex thesis/main.tex
+\end{minted}
+
+\subsection*{Компиляция PDF-документа}
+
+Перейдите в директорию с шаблоном и выполните скрипт рендеринга:
+
+\begin{minted}{bash}
+cd thesis
+./render.sh
+\end{minted}
+
+После выполнения скрипта будет скомпилирован финальный PDF-документ, готовый к подаче.
+
+\section{Выводы}
+
+macOS предоставляет стабильную и удобную среду для работы с \LaTeX. С помощью Homebrew можно быстро установить все необходимые компоненты, включая MacTeX, Python и средства для подсветки синтаксиса. Использование готового шаблона с GitHub позволяет быстро начать работу над дипломом или другим техническим документом.
+
+% -------------------------------------
+
+\chapter{Введение в систему контроля версий Git}\label{git_introduction}
+
+\section{Зачем нужен Git?}
+Git — это распределённая система контроля версий, созданная для эффективного управления изменениями в проектах с большим количеством исходного кода. Он позволяет:
+\begin{itemize}[noitemsep]
+    \item отслеживать историю изменений;
+    \item работать в команде без конфликтов;
+    \item откатываться к предыдущим версиям кода;
+    \item создавать альтернативные ветви разработки (branching);
+    \item автоматически сливать изменения (merging).
+\end{itemize}
+
+\section{История создания Git}
+Git был создан Линусом Торвальдсом в 2005 году для управления исходным кодом ядра Linux после конфликта с предыдущей системой контроля версий — BitKeeper~\cite{progit_book}. Требования:
+\begin{itemize}[noitemsep]
+    \item высокая скорость работы;
+    \item надёжная защита от потерь данных;
+    \item поддержка распределённой архитектуры;
+    \item лёгкость в ветвлении и слиянии.
+\end{itemize}
+
+\section{Ключевые особенности Git}
+\begin{itemize}[noitemsep]
+    \item Каждый разработчик имеет полную копию репозитория (локально).
+    \item Все изменения сохраняются в виде снапшотов.
+    \item Ветвление и слияние — базовая часть рабочего процесса.
+    \item Минимальная зависимость от центрального сервера.
+\end{itemize}
+
+Подробнее о философии Git — в книге Pro Git~\cite{progit_book}.
+
+\section{Основные команды Git}
+\begin{itemize}[noitemsep]
+    \item \texttt{git init} — инициализация репозитория.
+    \item \texttt{git clone} — копирование удалённого репозитория.
+    \item \texttt{git status} — просмотр состояния файлов.
+    \item \texttt{git add} — добавление файлов в индекс.
+    \item \texttt{git commit} — фиксация изменений.
+    \item \texttt{git branch} — работа с ветками.
+    \item \texttt{git checkout} — переключение между ветками.
+    \item \texttt{git merge} — слияние веток.
+    \item \texttt{git pull}, \texttt{git push} — взаимодействие с удалёнными репозиториями.
+\end{itemize}
+
+Команды подробно описаны в официальной документации~\cite{git_official_doc}.
+
+\section{Источники и полезные ссылки}
+\begin{itemize}[noitemsep]
+    \item \cite{git_official_doc} — официальная документация Git.
+    \item \cite{learngitbranching} — платформа интерактивного обучения Learn Git Branching.
+    \item \cite{progit_book} — Pro Git book.
+\end{itemize}
+
+\chapterConclusionSection{git_introduction}
+
+Вторая глава была посвящена изучению системы контроля версий Git. Рассмотрены её архитектура, принципы работы и основные команды. Были объяснены понятия коммита, индексации, истории изменений, а также таких операций, как ветвление (branching), слияние (merging) и откат изменений (reset, revert) \cite{progit_book, git_official_doc}.
+
+Git продемонстрировал себя как надёжный инструмент для индивидуальной и командной разработки. Его использование позволяет систематизировать процесс разработки, минимизировать риски потери данных и упростить интеграцию изменений. Глава заложила основу для выполнения практических задач на платформе Learn Git Branching.
+
+% -------------------------------------
+
+\chapter{Практика с Learn Git Branching}\label{git_branching_practice}
+
+В качестве обучающей платформы используется интерактивный тренажёр Learn Git Branching~\cite{learngitbranching}.
+
+\textbf{Важно:} последующая работа подразумевает что читатель уже ознакомился с источниками~\cite{git_official_doc, progit_book, learngitbranching}.
+
+\section{Main — Базовые концепции Git}
+
+\subsection{Introduction Sequence}
+\subsubsection{Introduction to Git Commits}
+\textbf{Цель:} познакомиться с понятием коммита в Git.
+
+Коммит в Git \textendash{} это снимок состояния всех отслеживаемых файлов. Git старается хранить только изменения (дельты), чтобы минимизировать использование памяти и ускорить операции. Каждый коммит связан с предыдущим (родительским), что позволяет формировать полную историю проекта.
+
+\textbf{Команда:}
+\begin{minted}{bash}
+git commit
+\end{minted}
+
+\refFigure{screenshot_LGB_1-1-1.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-1-1.png}{}
+
+После выполнения создаётся новый коммит, например \texttt{C2}, ссылающийся на \texttt{C1} как на родителя.
+
+\subsubsection{Branching in Git}
+\textbf{Цель:} научиться создавать и переключаться между ветками.
+
+Ветки в Git \textendash{} это указатели на определённые коммиты. Они практически не занимают места, поэтому создавать много веток \textendash{} это нормально и даже рекомендуется.
+
+\textbf{Команды:}
+\begin{minted}{bash}
+git branch newImage   # создание новой ветки
+git checkout newImage # переключение на неё
+git commit            # коммит будет в ветке newImage
+\end{minted}
+
+Альтернатива:
+\begin{minted}{bash}
+git checkout -b bugFix
+\end{minted}
+
+\refFigure{screenshot_LGB_1-1-2.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-1-2.png}{}
+
+\textbf{Важно:} коммиты записываются только в активную ветку (ту, где стоит символ *).
+
+\subsubsection{Merging in Git}
+\textbf{Цель:} объединить работу из разных веток в одну.
+
+Merge создаёт специальный коммит с двумя родителями, включающий изменения из обеих веток. Это особенно полезно для совместной работы.
+
+\textbf{Команды:}
+\begin{minted}{bash}
+git merge bugFix       # слияние ветки bugFix в текущую (main)
+git checkout bugFix    # переход на другую ветку
+git merge main         # слияние main в bugFix
+\end{minted}
+
+\refFigure{screenshot_LGB_1-1-3.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-1-3.png}{}
+
+После слияния все ветки включают весь набор коммитов проекта.
+
+\subsubsection{Rebase Introduction}
+\textbf{Цель:} познакомиться с альтернативным способом объединения веток.
+
+Rebase \textendash{} это перемещение коммитов из одной ветки на основание другой. Это делает историю проекта линейной и упрощает её анализ. Однако следует использовать осторожно, особенно при работе с общими ветками.
+
+\textbf{Команды:}
+\begin{minted}{bash}
+git rebase main        # переместить коммиты bugFix поверх main
+git checkout main
+git rebase bugFix      # переместить main после bugFix
+\end{minted}
+
+\refFigure{screenshot_LGB_1-1-4.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-1-4.png}{}
+
+\textbf{Важно:} Rebase изменяет историю коммитов и создаёт новые идентификаторы для "перемещённых" коммитов.
+
+Дополнительную информацию о командах и концепциях Git можно найти в документации и книге Pro Git.
+
+\subsection{Ramping Up}
+
+\subsubsection{Detach yo' HEAD}
+\textbf{Цель:} понять, как работает HEAD и что означает его "отсоединение".
+
+В Git переменная \texttt{HEAD} указывает на текущий коммит или ветку, на которой вы находитесь. Обычно она указывает на имя ветки (например, \texttt{main}), но можно напрямую привязать HEAD к коммиту.
+
+Это называется "отсоединённым HEAD" (detached HEAD), и в этом режиме коммиты не записываются ни в какую ветку, пока не будет выполнено явно указание.
+
+\textbf{Команды:}
+\begin{minted}{bash}
+git checkout C1        # переход на конкретный коммит
+\end{minted}
+
+\textbf{Результат:} HEAD указывает напрямую на коммит \texttt{C1}, а не на ветку.
+
+\textbf{Практика:} Проверьте команды:
+\begin{minted}{bash}
+git checkout main
+git commit
+\end{minted}
+
+Затем отсоедините HEAD:
+\begin{minted}{bash}
+git checkout C2
+\end{minted}
+
+\refFigure{screenshot_LGB_1-2-1.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-2-1.png}{}
+
+\subsubsection{Relative Refs (\texttt{\^{}})}
+\textbf{Цель:} освоить навигацию по коммитам с помощью относительных ссылок.
+
+Вместо указания полного хеша коммита, Git позволяет перемещаться по дереву коммитов с помощью символов \texttt{\^{}} и \texttt{\~{}}:
+
+- \texttt{main\^} — родитель \texttt{main};
+- \texttt{main\^{}}\texttt{\^{}} — дедушка;
+- \texttt{HEAD\^} — один шаг назад от текущего коммита.
+
+\textbf{Команды:}
+\begin{minted}{bash}
+git checkout main^
+git checkout HEAD^
+git checkout HEAD^
+\end{minted}
+
+\refFigure{screenshot_LGB_1-2-2.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-2-2.png}{}
+
+\textbf{Результат:} Вы перемещаетесь назад по истории коммитов.
+
+\subsubsection{Relative Refs (\texttt{\~})}
+\textbf{Цель:} быстро перемещаться назад по истории на несколько шагов.
+
+\texttt{HEAD\textasciitilde 3} эквивалентно \texttt{HEAD\^{}\^{}\^{}}, но значительно короче.
+
+\textbf{Команды:}
+\begin{minted}{bash}
+git checkout HEAD~4
+\end{minted}
+
+Можно использовать это в связке с \texttt{-f} (force) для перемещения веток:
+\begin{minted}{bash}
+git branch -f main HEAD~3
+\end{minted}
+
+\refFigure{screenshot_LGB_1-2-3.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-2-3.png}{Скиншот задания}
+
+\textbf{Примечание:} В реальных условиях запрещено перемещать текущую ветку таким способом — сначала нужно переключиться на другую.
+
+\subsubsection{Reversing Changes in Git}
+\textbf{Цель:} научиться отменять изменения с помощью \texttt{reset} и \texttt{revert}.
+
+\textbf{\texttt{git reset}} — откат ветки на предыдущий коммит (используется для локальной работы).
+
+\begin{minted}{bash}
+git reset HEAD~1
+\end{minted}
+
+\textbf{\texttt{git revert}} — создаёт новый коммит, отменяющий предыдущий (удобно для публичных веток).
+
+\begin{minted}{bash}
+git revert HEAD
+\end{minted}
+
+\refFigure{screenshot_LGB_1-2-4.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-2-4.png}{Скиншот задания}
+
+\textbf{Вывод:} Reset переписывает историю. Revert создаёт откат как отдельный коммит и безопасен для совместной работы.
+
+\subsection{Moving Work Around}
+
+\subsubsection{Cherry-pick Intro}
+\textbf{Цель:} научиться переносить отдельные коммиты между ветками.
+
+Команда \texttt{git cherry-pick} позволяет выбрать один (или несколько) коммитов и "применить" их в текущую ветку. Это удобно, когда нужно скопировать конкретные изменения, не сливая всю ветку целиком.
+
+\textbf{Сценарий:} допустим, нужный коммит есть в ветке \texttt{feature}, но мы хотим перенести его в \texttt{main} без merge или rebase.
+
+\textbf{Команда:}
+\begin{minted}{bash}
+git cherry-pick <hash-коммита>
+\end{minted}
+
+\textbf{Пример:}
+\begin{minted}{bash}
+git checkout main
+git cherry-pick C4
+\end{minted}
+
+\refFigure{screenshot_LGB_1-3-1.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-3-1.png}{}
+
+\textbf{Результат:} Ветка \texttt{main} получит копию коммита \texttt{C4}.
+
+\textbf{Важно:} коммит получает новый hash (так как история изменяется).
+
+\subsubsection{Interactive Rebase Intro}
+\textbf{Цель:} познакомиться с интерактивной перезаписью истории коммитов.
+
+\texttt{git rebase -i} позволяет:
+\begin{itemize}[noitemsep]
+    \item изменить порядок коммитов;
+    \item объединить коммиты (squash);
+    \item удалить ненужные коммиты;
+    \item изменить сообщения к коммитам.
+\end{itemize}
+
+\textbf{Команда:}
+\begin{minted}{bash}
+git rebase -i HEAD~3
+\end{minted}
+
+После запуска откроется список последних 3 коммитов. В интерактивном режиме можно выбрать действия: \texttt{pick}, \texttt{reword}, \texttt{edit}, \texttt{squash}, \texttt{drop}.
+
+\textbf{Пример:} чтобы объединить два последних коммита:
+\begin{minted}{text}
+pick 1a2b3c Первый коммит
+squash 4d5e6f Второй коммит
+\end{minted}
+
+\refFigure{screenshot_LGB_1-3-2.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-3-2.png}{}
+
+\textbf{Результат:} оба коммита объединятся в один.
+
+\textbf{Важно:} интерактивный rebase лучше использовать только в локальных ветках, до публикации в удалённый репозиторий.
+
+\subsection{A Mixed Bag}
+
+\subsubsection{Grabbing Just 1 Commit}
+\textbf{Цель:} изолированно скопировать один конкретный коммит из другой ветки.
+
+Иногда необходимо взять только один коммит из другой ветки, не объединяя всё её содержимое. Это решается с помощью \texttt{git cherry-pick}.
+
+\textbf{Команды:}
+\begin{minted}{bash}
+git checkout main
+git cherry-pick <hash-коммита>
+\end{minted}
+
+\refFigure{screenshot_LGB_1-4-1.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-4-1.png}{}
+
+\textbf{Сценарий:} один коммит на ветке содержит багфикс — берём только его.
+
+\subsubsection{Juggling Commits}
+\textbf{Цель:} научиться перемещать ветки и коммиты с помощью \texttt{branch -f} и \texttt{checkout}.
+
+Можно переназначать ветки на другие коммиты, используя ключ \texttt{-f} (force). Это мощный инструмент для манипуляций в истории.
+
+\textbf{Команды:}
+\begin{minted}{bash}
+git branch -f main HEAD~2
+git checkout C1
+\end{minted}
+
+\refFigure{screenshot_LGB_1-4-2.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-4-2.png}{}
+
+\textbf{Примечание:} подобные операции применимы только к локальным веткам.
+
+\subsubsection{Juggling Commits \#2}
+\textbf{Цель:} повторить и закрепить работу с переопределением веток.
+
+Продолжение предыдущего задания. Здесь нужно грамотно совместить \texttt{checkout}, \texttt{commit} и \texttt{branch -f} для создания точной структуры коммитов.
+
+\textbf{Команды:}
+\begin{minted}{bash}
+git checkout C0
+git branch -f bugFix HEAD
+git checkout bugFix
+git commit
+\end{minted}
+
+\refFigure{screenshot_LGB_1-4-3.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-4-3.png}{}
+
+\textbf{Результат:} создаётся нужная ветка на базе старого коммита с новым изменением.
+
+\subsubsection{Git Tags}
+\textbf{Цель:} познакомиться с тегами в Git и их созданием.
+
+Тег (tag) — это постоянная метка на конкретном коммите. Используется для пометки релизов, важных версий и контрольных точек.
+
+\textbf{Команда:}
+\begin{minted}{bash}
+git tag v1 C1
+\end{minted}
+
+\refFigure{screenshot_LGB_1-4-4.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-4-4.png}{}
+
+\textbf{Примечание:} в отличие от ветки, тег не перемещается при новых коммитах.
+
+\subsubsection{Git Describe}
+\textbf{Цель:} научиться использовать \texttt{git describe} для понимания положения HEAD относительно тегов.
+
+\texttt{git describe} показывает ближайший тег и расстояние (число коммитов) от него до текущего состояния ветки.
+
+\textbf{Команда:}
+\begin{minted}{bash}
+git describe
+\end{minted}
+
+\textbf{Пример вывода:}
+\begin{minted}{text}
+v1-2-gabcdef
+\end{minted}
+
+\refFigure{screenshot_LGB_1-4-5.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-4-5.png}{}
+
+\texttt{v1} — ближайший тег, \texttt{2} — количество коммитов после тега, \texttt{gabcdef} — hash текущего коммита.
+
+\subsection{Advanced Topics}
+
+\subsubsection{Rebasing over 9000 times}
+\textbf{Цель:} повторно закрепить использование \texttt{git rebase} и научиться выстраивать линейную историю при множественных ветках.
+
+При сложной структуре ветвлений и параллельных разработках часто необходимо "переносить" изменения с ветки на ветку, чтобы сохранить читаемость истории и избежать конфликтов при слиянии.
+
+\textbf{Команды:}
+\begin{minted}{bash}
+git rebase main
+\end{minted}
+
+\refFigure{screenshot_LGB_1-5-1.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-5-1.png}{}
+
+\textbf{Примечание:} важно выполнять rebase с осознанием того, что вы меняете историю коммитов. Не используйте на общедоступных ветках.
+
+\subsubsection{Multiple Parents}
+\textbf{Цель:} изучить коммиты с несколькими родителями (merge-коммиты).
+
+Git позволяет объединять несколько веток, создавая коммит с двумя и более родителями. Это удобно, но влечёт за собой визуальную сложность истории.
+
+\textbf{Команда:}
+\begin{minted}{bash}
+git merge feature1
+\end{minted}
+
+\refFigure{screenshot_LGB_1-5-2.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-5-2.png}{}
+
+\textbf{Пример:} если обе ветки имеют уникальные коммиты, результатом будет коммит с двумя родителями — \texttt{C4 = merge(C2, C3)}.
+
+\subsubsection{Branch Spaghetti}
+\textbf{Цель:} визуализировать и понять последствия хаотичной работы с ветками.
+
+Когда разработчики ветвятся без правил и контроля, история превращается в "спагетти" — множество пересечений, нестабильность и путаница.
+
+Цель уровня — выявить, как избежать этой ситуации и как можно аккуратно провести слияния или rebase для восстановления структуры.
+
+\textbf{Рекомендации:}
+\begin{itemize}[noitemsep]
+  \item Используйте feature-ветки.
+  \item Делайте squash перед merge.
+  \item Поддерживайте линейную историю на основной ветке.
+\end{itemize}
+
+\refFigure{screenshot_LGB_1-5-3.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_1-5-3.png}{}
+
+\section{Remote — Работа с удалёнными репозиториями}
+
+\subsection{Push \& Pull — Git Remotes}
+
+\subsubsection{Clone Intro}
+\textbf{Цель:} понять суть удалённого репозитория и создать его копию локально.
+
+Команда \texttt{git clone} создаёт локальную копию удалённого репозитория. В рамках LearnGitBranching она используется для создания виртуального удалённого репозитория и отображения его структуры.
+
+\textbf{Команда:}
+\begin{minted}{bash}
+git clone
+\end{minted}
+
+\refFigure{screenshot_LGB_2-1-1.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-1-1.png}{}
+
+\textbf{Результат:} появляется удалённый репозиторий (remote), связанный с текущим.
+
+\subsubsection{Remote Branches}
+\textbf{Цель:} изучить поведение удалённых веток.
+
+Удалённые ветки (например, \texttt{o/main}) отражают состояние удалённого репозитория. Они обновляются после fetch/pull и не могут быть изменены напрямую.
+
+\textbf{Пример поведения:}
+\begin{minted}{bash}
+git checkout o/main
+git commit
+\end{minted}
+
+\refFigure{screenshot_LGB_2-1-2.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-1-2.png}{}
+
+\textbf{Результат:} создаётся коммит, но он не привязывается к ветке \texttt{o/main}, так как HEAD отсоединён.
+
+\subsubsection{Git Fetchin'}
+\textbf{Цель:} получить изменения с удалённого репозитория без их применения.
+
+\texttt{git fetch} загружает изменения и обновляет удалённые ветки, но не изменяет локальные.
+
+\textbf{Команда:}
+\begin{minted}{bash}
+git fetch
+\end{minted}
+
+\textbf{Поведение:}
+\begin{itemize}[noitemsep]
+    \item загружает недостающие коммиты;
+    \item обновляет \texttt{o/main} (и др.);
+    \item не влияет на ваш рабочий каталог.
+\end{itemize}
+
+\refFigure{screenshot_LGB_2-1-3.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-1-3.png}{}
+
+\subsubsection{Git Pullin'}
+\textbf{Цель:} объединить fetch и merge в одну команду.
+
+\texttt{git pull} = \texttt{git fetch} + \texttt{git merge}. Используется для актуализации локальной ветки с удалённой.
+
+\textbf{Команды:}
+\begin{minted}{bash}
+git pull
+git fetch; git merge o/main
+\end{minted}
+
+\refFigure{screenshot_LGB_2-1-4.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-1-4.png}{}
+
+\textbf{Результат:} локальная ветка будет дополнена новыми коммитами из \texttt{o/main}.
+
+\subsubsection{Faking Teamwork}
+\textbf{Цель:} смоделировать параллельную работу нескольких разработчиков.
+
+В этом упражнении мы тренируемся в синхронизации изменений между локальной и удалённой ветками. Один разработчик делает коммит локально, другой — на удалённом.
+
+\textbf{Команды:}
+\begin{minted}{bash}
+git commit             # локальный коммит
+git fetch              # подтянуть удалённый
+\end{minted}
+
+\refFigure{screenshot_LGB_2-1-5.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-1-5.png}{}
+
+\textbf{Задача:} объединить обе версии через merge или rebase.
+
+\subsubsection{Git Pushin'}
+\textbf{Цель:} передать изменения в удалённый репозиторий.
+
+\texttt{git push} отправляет ваши локальные коммиты в удалённую ветку. Только если история не расходится.
+
+\textbf{Команда:}
+\begin{minted}{bash}
+git push
+\end{minted}
+
+\refFigure{screenshot_LGB_2-1-6.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-1-6.png}{}
+
+\textbf{Важно:} если история различается, push будет отклонён.
+
+\subsubsection{Diverged History}
+\textbf{Цель:} разрешить конфликты при расхождении истории.
+
+Когда локальная и удалённая ветки имеют разные изменения, Git требует ручного вмешательства. Нужно выполнить:
+
+\textbf{Команды:}
+\begin{minted}{bash}
+git pull --rebase      # или git fetch + rebase
+\end{minted}
+
+\textbf{После:} можно безопасно выполнить \texttt{git push}.
+
+\refFigure{screenshot_LGB_2-1-7.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-1-7.png}{}
+
+\subsubsection{Locked Main}
+\textbf{Цель:} изучить ситуацию, когда push запрещён без обновления локальной истории.
+
+Некоторые удалённые репозитории (например, GitHub) запрещают push, если локальная ветка не включает последние изменения.
+
+\textbf{Решение:}
+\begin{minted}{bash}
+git pull --rebase
+\end{minted}
+
+\refFigure{screenshot_LGB_2-1-8.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-1-8.png}{}
+
+\textbf{Результат:} локальная ветка обновляется и вы можете \texttt{push} без ошибок.
+
+\subsection{To Origin and Beyond — Advanced Git Remotes}
+
+\subsubsection{Push Main!}
+\textbf{Цель:} закрепить основную команду для публикации ветки.
+
+Задание фокусируется на использовании \texttt{git push} для основной ветки (main).
+
+\textbf{Команда:}
+\begin{minted}{bash}
+git push origin main
+\end{minted}
+
+\refFigure{screenshot_LGB_2-2-1.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-2-1.png}{}
+
+\textbf{Примечание:} при явном указании ветки повышается контроль.
+
+\subsubsection{Merging with remotes}
+\textbf{Цель:} объединить удалённые изменения с локальными.
+
+В случае, когда на удалённой стороне появились коммиты, которых нет у вас, нужно сначала их подтянуть:
+\begin{minted}{bash}
+git pull --rebase
+\end{minted}
+
+Затем можно безопасно делать:
+\begin{minted}{bash}
+git push
+\end{minted}
+
+\refFigure{screenshot_LGB_2-2-2.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-2-2.png}{}
+
+\subsubsection{Remote Tracking}
+\textbf{Цель:} понять, как ветки отслеживают друг друга.
+
+При клонировании создаются локальные ветки, "отслеживающие" удалённые:
+\begin{minted}{bash}
+git branch -vv
+\end{minted}
+
+\refFigure{screenshot_LGB_2-2-3.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-2-3.png}{}
+
+\textbf{Вывод:} вы увидите, какие ветки связаны с удалёнными и на сколько коммитов они отстают или опережают.
+
+\subsubsection{Git push arguments}
+\textbf{Цель:} научиться задавать явно, что и куда отправляется.
+
+Формат:
+\begin{minted}{bash}
+git push <remote> <source>:<destination>
+\end{minted}
+
+\textbf{Пример:}
+\begin{minted}{bash}
+git push origin bugFix:main
+\end{minted}
+
+Это отправит ветку \texttt{bugFix} в удалённую \texttt{main}.
+
+\refFigure{screenshot_LGB_2-2-4.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-2-4.png}{}
+
+\subsubsection{Git push arguments -- Expanded!}
+\textbf{Цель:} управлять историей удалённого репозитория.
+
+Удаление ветки с сервера:
+\begin{minted}{bash}
+git push origin :feature1
+\end{minted}
+
+\refFigure{screenshot_LGB_2-2-5.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-2-5.png}{}
+
+\textbf{Результат:} удалённая ветка \texttt{feature1} будет удалена.
+
+\subsubsection{Fetch arguments}
+\textbf{Цель:} частично обновлять удалённые данные.
+
+Можно получать не все изменения, а только конкретные ветки:
+\begin{minted}{bash}
+git fetch origin bugFix
+\end{minted}
+
+\refFigure{screenshot_LGB_2-2-6.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-2-6.png}{}
+
+\subsubsection{Source of nothing}
+\textbf{Цель:} проанализировать ситуацию, когда вы клонируете пустой репозиторий.
+
+После \texttt{git clone} не будет ни одного коммита или ветки. Вы должны создать начальный коммит вручную:
+\begin{minted}{bash}
+git commit
+\end{minted}
+
+\refFigure{screenshot_LGB_2-2-7.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-2-7.png}{}
+
+\subsubsection{Pull arguments}
+\textbf{Цель:} точно управлять направлением слияния.
+
+Можно явно указать, откуда и куда тянуть изменения:
+\begin{minted}{bash}
+git pull origin main
+\end{minted}
+
+Это тянет ветку \texttt{main} с \texttt{origin} в текущую локальную ветку.
+
+\refFigure{screenshot_LGB_2-2-8.png} представлен скриншот данного задания.
+\imageWithCaption{screenshot_LGB_2-2-8.png}{}
+
+\textbf{Заключение:} продвинутое взаимодействие с удалёнными репозиториями требует понимания того, что и куда передаётся. Явные аргументы повышают контроль и снижают ошибки.
+
+\chapterConclusionSection{git_branching_practice}
+
+В третьей главе была реализована практическая часть изучения Git на платформе Learn Git Branching \cite{learngitbranching}. Пользователь прошёл последовательно все основные модули: от базового ветвления и перемещения коммитов до работы с удалёнными репозиториями. Каждое задание было проанализировано и снабжено скриншотом, отражающим прогресс и логику решений.
+
+Практика показала, что визуальный подход к обучению Git значительно ускоряет понимание концепций и развивает мышление, ориентированное на управление историями изменений. Итогом главы стало закрепление всех ключевых команд и принципов Git в интерактивной форме, что подтверждает успешное освоение материала и готовность применять знания в реальных проектах.
+
+
+% -------------------------------------
+
+\chapter{Практика с Git: Git Immersion (Задания 1--33)}
+
+\section*{Задание 1: Setup}
+\imageWithCaption{images/part3_1.png}{Скриншот выполнения задания 1}
+\textbf{Описание:} Настроены имя и email пользователя в git. Установлены предпочтения по окончаниям строк в зависимости от ОС.
+\begin{minted}{shell}
+git config --global user.name "Your Name"
+git config --global user.email "your_email@whatever.com"
+git config --global core.autocrlf input
+git config --global core.safecrlf true
+\end{minted}
+
+\section*{Задание 2: More Setup}
+\imageWithCaption{images/part3_2.png}{Скриншот выполнения задания 2}
+\textbf{Описание:} Скачан и распакован учебный архив с сайта Git Immersion. Созданы директории для работы.
+\begin{minted}{shell}
+# manual download and unzip
+\end{minted}
+
+\section*{Задание 3: Create a Project}
+\imageWithCaption{images/part3_3.png}{Скриншот выполнения задания 3}
+\textbf{Описание:} Создана директория hello, написан hello.rb, инициализирован git-репозиторий, сделан первый коммит.
+\begin{minted}{shell}
+mkdir hello
+cd hello
+git init
+git add hello.rb
+git commit -m "First Commit"
+\end{minted}
+
+\section*{Задание 4: Checking Status}
+\imageWithCaption{images/part3_4.png}{Скриншот выполнения задания 4}
+\textbf{Описание:} Проверен статус репозитория, убедились в отсутствии несохранённых изменений.
+\begin{minted}{shell}
+git status
+\end{minted}
+
+\section*{Задание 5: Making Changes}
+\imageWithCaption{images/part3_5.png}{Скриншот выполнения задания 5}
+\textbf{Описание:} Изменён файл hello.rb с использованием ARGV. Просмотрено состояние перед индексацией.
+\begin{minted}{shell}
+git status
+\end{minted}
+
+\section*{Задание 6: Staging Changes}
+\imageWithCaption{images/part3_6.png}{Скриншот выполнения задания 6}
+\textbf{Описание:} Изменения подготовлены к коммиту с помощью git add.
+\begin{minted}{shell}
+git add hello.rb
+git status
+\end{minted}
+
+\section*{Задание 7: Staging and Committing}
+
+\imageWithCaption{images/part3_7.png}{Скриншот выполнения задания 7}
+
+\textbf{Описание:} Описан процесс поэтапного добавления и коммита нескольких файлов.
+\begin{minted}{shell}
+git add a.rb
+git add b.rb
+git commit -m "Changes for a and b"
+git add c.rb
+git commit -m "Unrelated change to c"
+\end{minted}
+
+\section*{Задание 8: Committing Changes}
+\imageWithCaption{images/part3_8.png}{Скриншот выполнения задания 8}
+\textbf{Описание:} Выполнен коммит с использованием редактора без флага -m.
+\begin{minted}{shell}
+git commit
+git status
+\end{minted}
+
+\section*{Задание 9: Changes, not Files}
+\imageWithCaption{images/part3_9.png}{Скриншот выполнения задания 9}
+\textbf{Описание:} Стадия и коммит изменений показаны на примере добавления значения по умолчанию и комментария.
+\begin{minted}{shell}
+git add hello.rb
+git commit -m "Added a default value"
+git add .
+git commit -m "Added a comment"
+\end{minted}
+
+\section*{Задание 10: History}
+\imageWithCaption{images/part3_10.1.png}{Вывод git log}
+\imageWithCaption{images/part3_10.2.png}{Форматированный вывод с графом}
+\textbf{Описание:} Изучены различные опции git log: сокращённый, с фильтрами, с графом.
+\begin{minted}{shell}
+git log
+git log --pretty=oneline
+git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+\end{minted}
+
+\section*{Задание 11: Aliases}
+\imageWithCaption{images/part3_11.png}{Создание алиасов в .gitconfig}
+\textbf{Описание:} Добавлены алиасы для часто используемых команд git, включая git hist для форматированного вывода.
+\begin{minted}{shell}
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+\end{minted}
+
+\section*{Задание 12: Getting Old Versions}
+\imageWithCaption{images/part3_12.png}{Просмотр и возврат к старой версии}
+\textbf{Описание:} Изучена возможность переключения на старые коммиты с помощью checkout по хешу.
+\begin{minted}{shell}
+git hist
+git checkout <hash>
+cat hello.rb
+git checkout main
+\end{minted}
+
+\section*{Задание 13: Tagging Versions}
+\imageWithCaption{images/part3_13.png}{Создание и использование тегов}
+\textbf{Описание:} Присвоены теги v1 и v1-beta разным коммитам. Проверена навигация по ним.
+\begin{minted}{shell}
+git tag v1
+git checkout v1^
+git tag v1-beta
+git checkout v1
+git tag
+git hist main --all
+\end{minted}
+
+\section*{Задание 14: Undoing Local Changes (before staging)}
+\imageWithCaption{images/part3_14.png}{Откат изменений в рабочей директории}
+\textbf{Описание:} Изменения отменены до индексации с помощью команды checkout.
+\begin{minted}{shell}
+git status
+git checkout hello.rb
+\end{minted}
+
+\section*{Задание 15: Undoing Staged Changes (before committing)}
+\imageWithCaption{images/part3_15.png}{Отмена индексированных изменений}
+\textbf{Описание:} Использован git reset для удаления файла из индекса и возврата к рабочей копии.
+\begin{minted}{shell}
+git add hello.rb
+git reset HEAD hello.rb
+git checkout hello.rb
+\end{minted}
+
+\section*{Задание 16: Undoing Committed Changes}
+\imageWithCaption{images/part3_16.png}{Откат коммита с помощью git revert}
+\textbf{Описание:} Выполнен откат коммита путём создания нового коммита с противоположными изменениями.
+\begin{minted}{shell}
+git add hello.rb
+git commit -m "Oops, we didn't want this commit"
+git revert HEAD
+git hist
+\end{minted}
+
+\section*{Задание 17: Removing Commits from a Branch}
+\imageWithCaption{images/part3_17.png}{Удаление последних коммитов через reset}
+\textbf{Описание:} Удалены последние коммиты с помощью git reset --hard до состояния коммита с тегом v1.
+\begin{minted}{shell}
+git tag oops
+git reset --hard v1
+git hist --all
+\end{minted}
+
+\section*{Задание 18: Remove the oops tag}
+\imageWithCaption{images/part3_18.png}{Удаление тега oops}
+\textbf{Описание:} Удалён временный тег для «плохого» коммита.
+\begin{minted}{shell}
+git tag -d oops
+git hist --all
+\end{minted}
+
+\section*{Задание 19: Amending Commits}
+\imageWithCaption{images/part3_19.png}{Изменение последнего коммита}
+\textbf{Описание:} Использован git commit --amend для обновления последнего коммита с добавлением email.
+\begin{minted}{shell}
+git add hello.rb
+git commit -m "Add an author comment"
+git add hello.rb
+git commit --amend -m "Add an author/email comment"
+git hist
+\end{minted}
+
+\section*{Задание 20: Moving Files}
+\imageWithCaption{images/part3_20.png}{Перемещение файла hello.rb в папку lib}
+\textbf{Описание:} Файл hello.rb перемещён в папку lib с помощью git mv и зафиксирован в репозитории.
+\begin{minted}{shell}
+mkdir lib
+git mv hello.rb lib
+git status
+git commit -m "Moved hello.rb to lib"
+\end{minted}
+
+\section*{Задание 21: More Structure}
+\imageWithCaption{images/part3_21.png}{Добавление Rakefile в проект}
+\textbf{Описание:} Добавлен файл Rakefile с задачами и выполнен rake.
+\begin{minted}{shell}
+git add Rakefile
+git commit -m "Added a Rakefile"
+rake
+\end{minted}
+
+\section*{Задание 22: Git Internals – .git Directory}
+\imageWithCaption{images/part3_22.1.png}{Содержимое директории .git}
+\imageWithCaption{images/part3_22.2.png}{Просмотр refs и config}
+\textbf{Описание:} Исследована структура внутренней директории .git и содержимое config, HEAD, refs.
+\begin{minted}{shell}
+ls -C .git
+ls -C .git/objects
+cat .git/config
+ls .git/refs
+git tag
+\end{minted}
+
+\section*{Задание 23: Working with Git Objects}
+\imageWithCaption{images/part3_23.png}{Просмотр содержимого объектов с помощью cat-file}
+\textbf{Описание:} Изучены типы и содержимое git-объектов: commit, tree, blob.
+\begin{minted}{shell}
+git hist --max-count=1
+git cat-file -t <hash>
+git cat-file -p <hash>
+\end{minted}
+
+\section*{Задание 24: Creating a Branch}
+\imageWithCaption{images/part3_24.png}{Создание и переход на новую ветку greet}
+\textbf{Описание:} Создана ветка greet и добавлены новые файлы: greeter.rb, обновлены hello.rb и Rakefile.
+\begin{minted}{shell}
+git checkout -b greet
+git add lib/greeter.rb
+git commit -m "Added greeter class"
+git add lib/hello.rb
+git commit -m "Hello uses Greeter"
+git add Rakefile
+git commit -m "Updated Rakefile"
+\end{minted}
+
+\section*{Задание 25: Navigating Branches}
+\imageWithCaption{images/part3_25.png}{Переход между ветками main и greet}
+\textbf{Описание:} Выполнен переход между ветками, просмотрено содержимое файлов в каждой ветке.
+\begin{minted}{shell}
+git checkout main
+cat lib/hello.rb
+git checkout greet
+cat lib/hello.rb
+\end{minted}
+
+\section*{Задание 26: Changes in Main}
+\imageWithCaption{images/part3_26.png}{Изменения в основной ветке main (добавлен README)}
+\textbf{Описание:} В ветке main создан и закоммичен файл README.
+\begin{minted}{shell}
+git checkout main
+git add README
+git commit -m "Added README"
+\end{minted}
+
+\section*{Задание 27: Viewing Diverging Branches}
+\imageWithCaption{images/part3_27.png}{Просмотр ветвлений с помощью git hist --all}
+\textbf{Описание:} Использован git hist --all для визуализации расхождения веток main и greet.
+\begin{minted}{shell}
+git hist --all
+\end{minted}
+
+\section*{Задание 28: Merging}
+\imageWithCaption{images/part3_28.png}{Слияние ветки main в greet}
+\textbf{Описание:} Ветка main объединена с greet. Возник merge-коммит.
+\begin{minted}{shell}
+git checkout greet
+git merge main
+git hist --all
+\end{minted}
+
+\section*{Задание 29: Creating a Conflict}
+\imageWithCaption{images/part3_29.png}{Создание конфликта при изменении hello.rb в main}
+\textbf{Описание:} В ветке main внесены изменения, конфликтующие с greet.
+\begin{minted}{shell}
+git checkout main
+[редактирование lib/hello.rb]
+git add lib/hello.rb
+git commit -m "Made interactive"
+\end{minted}
+
+\section*{Задание 30: Resolving Conflicts}
+\imageWithCaption{images/part3_30.png}{Разрешение конфликта и коммит}
+\textbf{Описание:} Конфликт разрешён вручную. Обновлён hello.rb, изменения закоммичены.
+\begin{minted}{shell}
+git checkout greet
+git merge main
+[разрешение конфликта]
+git add lib/hello.rb
+git commit -m "Merged main fixed conflict."
+\end{minted}
+
+\section*{Задание 31: Rebasing vs Merging}чыч
+\textbf{Описание:} Теоретическая часть по сравнению git merge и git rebase.
+\begin{minted}{shell}
+# без команд (обзор)
+\end{minted}
+
+\section*{Задание 32: Resetting the Greet Branch}
+\imageWithCaption{images/part3_32.png}{Сброс ветки greet до коммита перед merge}
+\textbf{Описание:} Ветка greet сброшена до коммита перед первым merge для демонстрации rebase.
+\begin{minted}{shell}
+git checkout greet
+git hist
+git reset --hard <hash>
+\end{minted}
+
+\section*{Задание 33: Resetting the Main Branch}
+\imageWithCaption{images/part3_33.png}{Откат ветки main перед конфликтным коммитом}
+\textbf{Описание:} Ветка main сброшена до коммита перед добавлением интерактивного ввода для избежания конфликта.
+\begin{minted}{shell}
+git checkout main
+git hist
+git reset --hard <hash>
+git hist --all
+\end{minted}
+
+
+% -------------------------------------
+
+\unnumberedChapter{Заключение и рекомендации}
+
+\textbf{Общие выводы.}
+
+В результате выполнения практической работы были достигнуты все поставленные цели. Студент овладел базовыми навыками работы с системой вёрстки \LaTeX{} и системой контроля версий Git \cite{latex_official_doc, progit_book}, а также закрепил знания с помощью платформы Learn Git Branching \cite{learngitbranching}.
+
+На практике были выполнены следующие ключевые этапы:
+\begin{itemize}
+  \item подготовка отчётного документа в \LaTeX{} с использованием профессиональных пакетов для оформления;
+  \item прохождение всех блоков интерактивной платформы Learn Git Branching;
+  \item визуализация и пояснение каждой задачи с приложением скриншотов и кода;
+  \item соблюдение требований к структуре, оформлению и библиографическому аппарату.
+\end{itemize}
+
+Полученные знания и навыки являются фундаментальными для последующей профессиональной деятельности в сфере IT и научных исследований. Документ может быть использован как образец оформления практических работ и отчётов.
+
+\textbf{Рекомендации.}
+
+\begin{itemize}
+  \item Рекомендуется продолжить углублённое изучение Git, включая такие темы, как rebase, stash, cherry-pick и CI/CD-интеграции.
+  \item Освоение более продвинутых возможностей \LaTeX{}, таких как TikZ, Beamer и автоматическая генерация диаграмм, позволит расширить инструментарий вёрстки.
+  \item В рамках будущих курсов или проектов имеет смысл применить полученные навыки на реальных проектах, используя GitHub как платформу совместной работы.
+\end{itemize}
+
+\textbf{Дополнительные материалы.}
+
+Весь исходный код работы, включая файлы \LaTeX{}, изображения и библиографию, доступен по следующей ссылке:
+\begin{center}
+\textbf{\github}
+\end{center}
+
+Скомпилированный итоговый документ в формате PDF можно скачать здесь:
+\begin{center}
+\textbf{\pdfLink}
+\end{center}
+
+\noindent Эти материалы предоставлены для свободного изучения, повторного использования и адаптации в образовательных целях.
+
+% -------------------------------------
+
+\bibliographyChapter 
+
+% -------------------------------------
+
+\end{document}
+% vim: fdm=syntax

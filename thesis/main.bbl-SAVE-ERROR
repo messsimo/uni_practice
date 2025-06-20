@@ -1,0 +1,95 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{self}{article}{}
+      \name{author}{1}{}{%
+        {{hash=2a0a4400b904e082c7d5ac865468a0f6}{%
+           family={Curmanschii},
+           familyi={C\bibinitperiod},
+           given={Anton},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{2a0a4400b904e082c7d5ac865468a0f6}
+      \strng{fullhash}{2a0a4400b904e082c7d5ac865468a0f6}
+      \strng{bibnamehash}{2a0a4400b904e082c7d5ac865468a0f6}
+      \strng{authorbibnamehash}{2a0a4400b904e082c7d5ac865468a0f6}
+      \strng{authornamehash}{2a0a4400b904e082c7d5ac865468a0f6}
+      \strng{authorfullhash}{2a0a4400b904e082c7d5ac865468a0f6}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Conferința Studențească, Ediția XXVIII-a, în tipar}
+      \field{title}{Explorarea fișierelor {PNG}}
+      \field{year}{2024}
+    \endentry
+    \entry{gif_unusable_reason}{online}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{title}{{Why There Are No GIF Files on GNU Web Pages}}
+      \field{urlday}{16}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{1997}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.gnu.org/philosophy/gif.en.html
+      \endverb
+      \verb{url}
+      \verb https://www.gnu.org/philosophy/gif.en.html
+      \endverb
+    \endentry
+    \entry{png_spec}{manual}{}
+      \name{author}{1}{}{%
+        {{hash=d0feba58af4f869b6b638205288d2808}{%
+           family={Adler},
+           familyi={A\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{d0feba58af4f869b6b638205288d2808}
+      \strng{fullhash}{d0feba58af4f869b6b638205288d2808}
+      \strng{bibnamehash}{d0feba58af4f869b6b638205288d2808}
+      \strng{authorbibnamehash}{d0feba58af4f869b6b638205288d2808}
+      \strng{authornamehash}{d0feba58af4f869b6b638205288d2808}
+      \strng{authorfullhash}{d0feba58af4f869b6b638205288d2808}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{PNG 1.2 specification document}}
+      \field{urlday}{16}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{1999}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://www.libpng.org/pub/png/spec/1.2/PNG-Introduction.html
+      \endverb
+      \verb{url}
+      \verb http://www.libpng.org/pub/png/spec/1.2/PNG-Introduction.html
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
